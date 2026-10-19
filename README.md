@@ -21,12 +21,14 @@ Created by Kevin Berg with AI assistance. Feedback and example results are welco
 
 ## Install
 
-1. Download **REM-Sheet-Metal-Angles-3.5.0.zip** from [Releases](https://github.com/9g6smzc8fv-dot/ingetrazo-sheet-metal-angles/releases).
+1. Download **Sheet-Metal-Angles-3.5.0.zip** from [Releases](https://github.com/9g6smzc8fv-dot/ingetrazo-sheet-metal-angles/releases).
 2. Extract the ZIP to a normal folder.
 3. In IngeTrazo, choose **Extensions → Open plugins folder** (the wording may be Open extensions folder).
 4. Save your drawings and close IngeTrazo.
-5. Copy **only `rem_sheet_metal_angles.py`** into the plugins folder.
+5. Copy **only `sheet_metal_angles.py`** into the plugins folder.
 6. Reopen IngeTrazo and choose **Extensions → Sheet Metal Angles**, or press **Ctrl+Alt+B** if that shortcut is available.
+
+If upgrading an earlier 3.5 installation, remove the old **rem_sheet_metal_angles.py** file while IngeTrazo is closed and keep only **sheet_metal_angles.py**. Existing part definitions remain compatible.
 
 No separate Python installation is needed. The original Sheet Metal tool can remain installed separately.
 
