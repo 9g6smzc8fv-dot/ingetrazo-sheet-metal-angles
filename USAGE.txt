@@ -1,4 +1,4 @@
-REM SHEET METAL ANGLES 3.5.0 - IngeTrazo
+SHEET METAL ANGLES 3.5.0 - IngeTrazo
 October 19, 2026
 
 Adds adjustable bend rotation to the stainless sheet-metal tool.
@@ -7,13 +7,19 @@ The default remains 90 degrees. The formed solid, flat blank, bend lines
 and DXF bend notes regenerate with the chosen angles.
 
 INSTALL AS A SEPARATE EXTENSION
-1. Extract REM-Sheet-Metal-Angles-3.5.0.zip to a normal folder.
+1. Extract Sheet-Metal-Angles-3.5.0.zip to a normal folder.
 2. In IngeTrazo, use Extensions > Open extensions folder (or plugins folder).
 3. Save drawings and close IngeTrazo.
-4. Copy ONLY rem_sheet_metal_angles.py into that folder.
+4. Copy ONLY sheet_metal_angles.py into that folder.
 5. Reopen IngeTrazo. Choose Extensions > Sheet Metal Angles, or Ctrl+Alt+B.
 The original Sheet Metal 3.4 tool can remain installed with Ctrl+Alt+M.
 No standalone Python installation or internet connection is needed.
+
+UPGRADING AN EARLIER 3.5 INSTALL
+If rem_sheet_metal_angles.py is already in your plugins folder, remove that
+old file while IngeTrazo is closed when installing sheet_metal_angles.py.
+Keep only one copy of this version. Existing part definitions remain
+compatible; this update changes the file name, not their stored identity.
 
 CHANGE A BEND
 Select the whole generated part > Load Selected. Double-click its Flange
