@@ -1,0 +1,90 @@
+REM SHEET METAL ANGLES 3.5.0 - IngeTrazo
+October 19, 2026
+
+Adds adjustable bend rotation to the stainless sheet-metal tool.
+Each of the four flanges and each return has its own 1-170 degree angle.
+The default remains 90 degrees. The formed solid, flat blank, bend lines
+and DXF bend notes regenerate with the chosen angles.
+
+INSTALL AS A SEPARATE EXTENSION
+1. Extract REM-Sheet-Metal-Angles-3.5.0.zip to a normal folder.
+2. In IngeTrazo, use Extensions > Open extensions folder (or plugins folder).
+3. Save drawings and close IngeTrazo.
+4. Copy ONLY rem_sheet_metal_angles.py into that folder.
+5. Reopen IngeTrazo. Choose Extensions > Sheet Metal Angles, or Ctrl+Alt+B.
+The original Sheet Metal 3.4 tool can remain installed with Ctrl+Alt+M.
+No standalone Python installation or internet connection is needed.
+
+CHANGE A BEND
+Select the whole generated part > Load Selected. Double-click its Flange
+feature, then edit Bend from flat (degrees). Returns have their own angle.
+Confirm with OK; Cancel restores the preceding part.
+To start fresh: New Base > place the base > Flange > click a free base edge.
+Choose the stainless material preset in Material, then set the angle.
+
+ANGLE CONVENTION
+This is rotation FROM FLAT, not the final included/opening angle:
+  Bend 45 degrees = opening 135 degrees.
+  Bend 90 degrees = opening 90 degrees.
+  Bend 135 degrees = opening 45 degrees.
+UP/DOWN selects the first bend direction. INWARD/OUTWARD selects the return
+turn direction. The return angle is the second rotation relative to its
+parent flange. No flange / No return removes a bend.
+Flange leg length is measured along the outside leg to virtual sharps;
+it is not the vertical height of a non-square flange.
+
+CORNERS
+Non-90-degree bends require Open corners. Automatic square reliefs are
+enlarged where needed for inward projection. Closed, full-width, mitred
+and tabbed corner construction retains the original 90-degree algorithms.
+If editing such an existing part, choose Corners > Open first.
+Too-short straight legs, self-intersecting sections and interfering base
+or opposing flange envelopes are rejected rather than exported.
+
+DEVELOPMENT
+The existing stainless preset is unchanged: thickness .038 in, inside
+radius .079 in, outside bend deduction .099 in at 90 degrees.
+For other angles the effective neutral radius is calibrated from that
+measured 90-degree allowance; it is held constant as the angle changes.
+The 90-degree deduction is NOT scaled linearly to other angles.
+  BA90 = 2*(R+T) - BD90
+  neutral_radius = BA90 / (pi/2)
+  BA(angle) = neutral_radius * radians(angle)
+  outside_setback = (R+T)*tan(radians(angle)/2)
+  BD(angle) = 2*outside_setback - BA(angle)
+This is a calibrated development model, not a measured non-90 tooling
+table. Confirm a sample bend with the shop before production cutting.
+No springback or press-brake tool-angle compensation is applied.
+
+COMPATIBILITY
+Loads definitions from earlier unified, guided and cab-panel tools.
+Parts edited with this extension are saved under its own new definition
+key. Use Sheet Metal Angles 3.5 on every computer editing those parts;
+the older 3.4 tool cannot edit the new angled definitions. Whole-part
+placement, cuts, Undo/Redo and flat/formed switching are retained.
+The original 90-degree geometry and flat patterns follow the unchanged
+compatibility path, including earlier advanced corner constructions.
+
+EXAMPLE
+Examples/Variable-Angle-Stainless-Formed.igz and its Flat counterpart
+contain a generic 12 x 18 inch base with a 75-degree UP flange and a
+45-degree inward return. The DXF is its developed blank.
+Open the example separately; select the whole part and Load Selected.
+No customer drawing has been changed and this package is not installed
+automatically.
+
+VALIDATION
+720 numerical angle combinations passed for UP/DOWN flanges and both
+return directions. Checked thickness, bend direction, flat extents and
+actual bend-note angles; additional checks cover cut mapping and clearance.
+80 native closed-solid builds passed using the local IngeTrazo geometry
+engine. An isolated native UI host verified angle editing, Undo/Redo,
+Cancel, flat/formed identity and native .igz save/reopen.
+Legacy 90-degree faces and flat definitions matched version 3.4 exactly
+for Open, butt seam, full-width and independent corner fixtures.
+These are software and geometry checks; no physical forming trial was run.
+
+Formula reference: Autodesk sheet-metal unfold rules equations
+https://www.autodesk.com/akn-aknsite-article-attachments/8ca65522-d3ea-4478-8de6-0a86eba6d64c.pdf
+
+MIT licence. Copyright (c) 2026 Kevin Berg.
